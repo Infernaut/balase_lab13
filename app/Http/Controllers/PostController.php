@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -13,7 +14,7 @@ class PostController extends Controller
     }
     public function index()
     {
-        $posts = Post::all();
+        $posts = Auth::user()->posts; // Retrieve posts for the logged-in user
         return view('posts.index', compact('posts'));
     }
 
@@ -27,9 +28,8 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
-            'user_id ' => 'required|',
         ]);
-
+        $validated['user_id'] = Auth::user()->id; // Add the authenticated user's ID
         $post = Post::create($validated);
 
         return redirect()->route('posts.show', $post->post_id)->with('success', 'Post created successfully.');

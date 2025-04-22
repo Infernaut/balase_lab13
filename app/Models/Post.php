@@ -12,7 +12,8 @@ class Post extends Model
     protected $fillable = [
         'post_id',
         'title',
-        'body'
+        'body',
+        'user_id',
     ];
     protected $keyType = 'int';
     public $incrementing = true;

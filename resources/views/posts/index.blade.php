@@ -18,7 +18,6 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Title</th>
                         <th>Actions</th>
                     </tr>
@@ -26,7 +25,6 @@
                 <tbody>
                     @foreach ($posts as $post)
                     <tr>
-                        <td>{{ $post->post_id }}</td>
                         <td>{{ $post->title }}</td>
                         <td>
                             <a href="{{ route('posts.show', $post->post_id) }}" class="btn btn-info btn-sm">View</a>
@@ -41,6 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a href="/dashboard" class="btn btn-primary mb-3"> Go back to dashboard</a>
         </div>
     </div>
 
